@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBook.Models.Ingredient
+
+@using (Html.BeginForm())
+{
+
+    <h4> Ingredient: @Html.TextBoxFor(model => model.Name)</h4>
+    <input type="submit" value="Add new ingredient" class="btn btn-default">
+
+}
+
+<p>@Html.ActionLink("Show all ingredients", "Index")</p>

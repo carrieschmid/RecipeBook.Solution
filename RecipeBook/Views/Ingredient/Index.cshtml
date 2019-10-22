@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBook.Models;
+@model List<Ingredient>;
+
+<h2>Ingredients List</h2>
+
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Ingredient ingredient in Model)
+    {
+      <li>@Html.ActionLink($"{ingredient.Name}", "Details", new { id = ingredient.IngredientId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No items have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new ingredient", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

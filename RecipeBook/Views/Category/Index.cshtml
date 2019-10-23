@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBook.Models;
+@model List<Category>;
+
+<h2>Categories</h2>
+
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Category category in Model)
+    {
+      <li>@Html.ActionLink($"{category.Name}", "Details", new { id = category.CategoryId })</li>
+    }
+  </ul>
+  
+}
+else
+{
+  <h3>No categories have been added yet!</h3>
+}

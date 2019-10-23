@@ -2,11 +2,18 @@
   Layout = "_Layout";
 }
 
-@model RecipeBook.Models.Recipe
+@model RecipeBook.Models.RecipeIngredient
+@{var dropdown = ViewBag.IngredientDropDown as SelectList;}
 
 @using (Html.BeginForm())
 {
-    <h4> Ingredients: @Html.TextBoxFor(model => model.Ingredients)</h4>
+    <h4> Ingredients: @Html.DropDownListFor(model => model.IngredientId, dropdown, "--SelectIngredient")</h4>
+
+    <input type="hidden" value=@($"{ViewBag.RecipeId}") name="RecipeId">
+    //binds the value of ViewBag RecipeId value to the RecipieIngredient id in the model
+
+
+
 
     <input type="submit" value="Add ingredients" class="btn btn-default">
     

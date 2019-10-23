@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBook.Models.RecipeCategory
+@{var dropdown = ViewBag.CategoryDropDown as SelectList;}
+
+@using (Html.BeginForm())
+{
+    <h4> Ingredients: @Html.DropDownListFor(model => model.CategoryId, dropdown, "--Select Category--")</h4>
+    <input type="hidden" value=@($"{ViewBag.RecipeId}") name="RecipeId">
+
+
+
+    <input type="submit" value="Add Category" class="btn btn-default">
+    
+}

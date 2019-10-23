@@ -33,9 +33,10 @@ namespace RecipeBook.Controllers {
         public ActionResult Create (Recipe recipe) {
             _db.Recipes.Add (recipe);
             _db.SaveChanges ();
-            return RedirectToAction ("AddIngredient", "Recipie", new {id = recipe.RecipeId });
+            return RedirectToAction ("AddIngredient", "Recipe", new {id = recipe.RecipeId });
         }
 
+        [HttpGet]
         public ActionResult AddIngredient (int id)
         {
             ViewBag.IngredientDropDown = new SelectList (_db.Ingredients, "IngredientId", "Name");
@@ -52,6 +53,7 @@ namespace RecipeBook.Controllers {
 
         }
 
+        [HttpGet]
            public ActionResult AddCategory (int id)
         {
             ViewBag.CategoryDropDown = new SelectList (_db.Categories, "CategoryId", "Name");
@@ -64,7 +66,7 @@ namespace RecipeBook.Controllers {
         {
             _db.RecipeCategories.Add(category);
             _db.SaveChanges();
-            return RedirectToAction("AddCategory", "Recipe", new{id= category.RecipeId});
+            return RedirectToAction("Index", "Recipe");
 
         }
 

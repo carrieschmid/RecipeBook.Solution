@@ -33,8 +33,42 @@ namespace RecipeBook.Controllers {
         public ActionResult Create (Recipe recipe) {
             _db.Recipes.Add (recipe);
             _db.SaveChanges ();
-            return RedirectToAction ("Index");
+            return RedirectToAction ("AddIngredient", "Recipie", new {id = recipe.RecipeId });
         }
+
+        public ActionResult AddIngredient (int id)
+        {
+            ViewBag.IngredientDropDown = new SelectList (_db.Ingredients, "IngredientId", "Name");
+            ViewBag.RecipeId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddIngredient(RecipeIngredient ingredient)
+        {
+            _db.RecipeIngredients.Add(ingredient);
+            _db.SaveChanges();
+            return RedirectToAction("AddCategory", "Recipe", new{id= ingredient.RecipeId});
+
+        }
+
+           public ActionResult AddCategory (int id)
+        {
+            ViewBag.CategoryDropDown = new SelectList (_db.Categories, "CategoryId", "Name");
+            ViewBag.RecipeId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCategory(RecipeCategory category)
+        {
+            _db.RecipeCategories.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("AddCategory", "Recipe", new{id= category.RecipeId});
+
+        }
+
+
 
     }
 

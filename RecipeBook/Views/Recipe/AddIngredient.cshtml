@@ -6,10 +6,8 @@
 
 @using (Html.BeginForm())
 {
-    <h4> Recipe Name: @Html.TextBoxFor(model => model.Name)</h4>
-    <h4> Rating: @Html.TextBoxFor(model => model.Rating)</h4>
+    <h4> Ingredients: @Html.TextBoxFor(model => model.Ingredients)</h4>
 
     <input type="submit" value="Add ingredients" class="btn btn-default">
     
 }
-

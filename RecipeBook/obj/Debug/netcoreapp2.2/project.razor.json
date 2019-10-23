@@ -2966,6 +2966,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Recipe/Details.cshtml",
+      "TargetPath": "Views/Recipe/Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Recipe/Index.cshtml",
       "TargetPath": "Views/Recipe/Index.cshtml",
       "FileKind": "mvc"
@@ -3013,6 +3018,11 @@
     {
       "FilePath": "Views/Ingredient/Create.cshtml",
       "TargetPath": "Views/Ingredient/Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Category/Details.cshtml",
+      "TargetPath": "Views/Category/Details.cshtml",
       "FileKind": "mvc"
     },
     {

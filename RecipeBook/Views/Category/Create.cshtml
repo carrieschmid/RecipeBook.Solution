@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBook.Models.Category
+
+@using (Html.BeginForm())
+{
+    <h4> Category Name: @Html.TextBoxFor(model => model.Name)</h4>
+
+
+    <input type="submit" value="Add category" class="btn btn-default">
+    
+}

@@ -7,6 +7,6 @@ namespace RecipeBook.Models
         public int CategoryId {get;set;}
         public string Name {get;set;}
 
-        public ICollection<Recipe> Recipes{get;set;}
+        public ICollection<RecipeCategory> RecipeCategories{get;set;}
     }
 }

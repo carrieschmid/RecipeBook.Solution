@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBook.ViewModels.RecipeView
+
+<h2>Item Details</h2>
+<hr>
+
+<h3>Ingredient: @Html.DisplayFor(model => model.Recipe.Name)</h3>
+
+@if(@Model.Ingredients.Count == 0)
+{
+  <p>This item does not belong to any recipes</p>
+}
+else
+{
+  <h4>Ingredients:</h4>
+  <ul>
+  @foreach(Ingredient ingredient in Model.Ingredients)
+  {
+    <li>@ingredient.Name</li>
+     @using (Html.BeginForm("DeleteRecipe", "Ingredient"))
+    {
+      @Html.Hidden("joinId", @ingredient.IngredientId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+  <ul>
+      @foreach(Category c in Model.Categories)
+    {
+    <li>@c.Name</li>
+     @using (Html.BeginForm("DeleteRecipe", "Ingredient"))
+    {
+      @Html.Hidden("joinId", @c.CategoryId)
+      <input type="submit" value="Delete"/>
+    }
+    }
+  </ul>
+}

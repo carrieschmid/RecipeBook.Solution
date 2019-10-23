@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBook.Data;
 
-namespace RecipeBook.Data.Migrations
+namespace RecipeBook.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191023232807_ChangeRecipe")]
+    partial class ChangeRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,15 +226,11 @@ namespace RecipeBook.Data.Migrations
                     b.Property<int>("RecipeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CategoryId");
-
                     b.Property<string>("Name");
 
                     b.Property<int>("Rating");
 
                     b.HasKey("RecipeId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Recipes");
                 });
@@ -321,22 +319,15 @@ namespace RecipeBook.Data.Migrations
             modelBuilder.Entity("RecipeBook.Models.Instruction", b =>
                 {
                     b.HasOne("RecipeBook.Models.Recipe")
-                        .WithMany("Instrucitons")
+                        .WithMany("Instructions")
                         .HasForeignKey("RecipeID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RecipeBook.Models.Recipe", b =>
-                {
-                    b.HasOne("RecipeBook.Models.Category")
-                        .WithMany("Recipes")
-                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("RecipeBook.Models.RecipeCategory", b =>
                 {
                     b.HasOne("RecipeBook.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("RecipeCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 

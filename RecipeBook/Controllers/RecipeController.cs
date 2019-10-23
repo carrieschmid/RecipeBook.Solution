@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RecipeBook.Data;
 using RecipeBook.Models;
+using RecipeBook.ViewModels;
 
 namespace RecipeBook.Controllers {
 
@@ -68,6 +69,39 @@ namespace RecipeBook.Controllers {
             _db.SaveChanges();
             return RedirectToAction("Index", "Recipe");
 
+        }
+
+        [HttpGet]
+           public ActionResult Details (int id)
+        {
+            // var thisRecipe = (from r in ApplicationDbContext.Recipes
+            //     join i in ApplicationDbContext.RecipeIngredients on r.RecipeId equals i.RecipeId
+            //     join c in ApplicationDbContext.RecipeCategories on r.RecipeId equals c.RecipeId
+            //     where r.RecipeId == id
+            //     select new {
+            //         RecipeID = id;
+            //     })
+            //recpie -> list catergory -> list ingredients
+
+            var thisRecipe = _db.Recipes
+            .FirstOrDefault(r => r.RecipeId == id);
+
+            var theseCategories = _db.RecipeCategories
+            .Where(rc => rc.RecipeId == id)
+            .Select(rc => rc.CategoryId).ToList();
+
+            var includedCategories = _db.Categories
+            .Where(c => theseCategories.Contains(c.CategoryId)).ToList();
+
+            var theseIngredients = _db.RecipeIngredients
+            .Where(ri => ri.RecipeId == id)
+            .Select(ri => ri.IngredientId).ToList();
+
+            var includedIngredients = _db.Ingredients
+            .Where(i => theseIngredients.Contains(i.IngredientId)).ToList();
+
+            RecipeView model = new RecipeView(){Recipe=thisRecipe, Categories=includedCategories, Ingredients=includedIngredients};
+            return View(model);
         }
 
 

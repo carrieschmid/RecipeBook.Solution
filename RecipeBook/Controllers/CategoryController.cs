@@ -36,5 +36,15 @@ namespace RecipeBook.Controllers {
             _db.SaveChanges ();
             return RedirectToAction ("Index");
         }
+
+        [HttpGet]
+        public ActionResult Details (int id)
+        {
+            var thisCategory = _db.Categories
+            .Include(category => category.RecipeCategories)
+            .ThenInclude(join => join.Recipe)
+            .FirstOrDefault(category => category.CategoryId == id);
+            return View(thisCategory);
+        }
     }
 }

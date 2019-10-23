@@ -40,3 +40,5 @@
 /Users/Guest/Desktop/RecipeBook/RecipeBook/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/AddIngredient.g.cshtml.cs
 /Users/Guest/Desktop/RecipeBook/RecipeBook/obj/Debug/netcoreapp2.2/Razor/Views/Category/Create.g.cshtml.cs
 /Users/Guest/Desktop/RecipeBook/RecipeBook/obj/Debug/netcoreapp2.2/Razor/Views/Category/Index.g.cshtml.cs
+/Users/Guest/Desktop/RecipeBook/RecipeBook/obj/Debug/netcoreapp2.2/Razor/Views/Category/Details.g.cshtml.cs
+/Users/Guest/Desktop/RecipeBook/RecipeBook/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Details.g.cshtml.cs

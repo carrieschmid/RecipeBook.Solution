@@ -2,17 +2,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBook.Data;
 
-namespace RecipeBook.Data.Migrations
+namespace RecipeBook.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191022205405_Initial")]
-    partial class Initial
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,6 +177,98 @@ namespace RecipeBook.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("RecipeBook.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.Ingredient", b =>
+                {
+                    b.Property<int>("IngredientId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("IngredientId");
+
+                    b.ToTable("Ingredients");
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.Instruction", b =>
+                {
+                    b.Property<int>("InstructionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("RecipeID");
+
+                    b.Property<string>("Step");
+
+                    b.Property<double>("Time");
+
+                    b.HasKey("InstructionId");
+
+                    b.HasIndex("RecipeID");
+
+                    b.ToTable("Instruction");
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.Recipe", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Rating");
+
+                    b.HasKey("RecipeId");
+
+                    b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.RecipeCategory", b =>
+                {
+                    b.Property<int>("RecipeCategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<int>("RecipeId");
+
+                    b.HasKey("RecipeCategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeCategories");
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.RecipeIngredient", b =>
+                {
+                    b.Property<int>("RecipeIngredientId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IngredientId");
+
+                    b.Property<int>("RecipeId");
+
+                    b.HasKey("RecipeIngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeIngredients");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -221,6 +311,40 @@ namespace RecipeBook.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.Instruction", b =>
+                {
+                    b.HasOne("RecipeBook.Models.Recipe")
+                        .WithMany("Instructions")
+                        .HasForeignKey("RecipeID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.RecipeCategory", b =>
+                {
+                    b.HasOne("RecipeBook.Models.Category", "Category")
+                        .WithMany("RecipeCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RecipeBook.Models.Recipe", "Recipe")
+                        .WithMany("Categories")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RecipeBook.Models.RecipeIngredient", b =>
+                {
+                    b.HasOne("RecipeBook.Models.Ingredient", "Ingredient")
+                        .WithMany("RecipeIngredients")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RecipeBook.Models.Recipe", "Recipe")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

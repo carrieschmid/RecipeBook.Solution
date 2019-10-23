@@ -12422,11 +12422,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Guest/Desktop/RecipeBook.Solution/RecipeBook/RecipeBook.csproj",
+      "projectUniqueName": "/Users/Guest/Desktop/RecipeBook/RecipeBook/RecipeBook.csproj",
       "projectName": "RecipeBook",
-      "projectPath": "/Users/Guest/Desktop/RecipeBook.Solution/RecipeBook/RecipeBook.csproj",
+      "projectPath": "/Users/Guest/Desktop/RecipeBook/RecipeBook/RecipeBook.csproj",
       "packagesPath": "/Users/Guest/.nuget/packages/",
-      "outputPath": "/Users/Guest/Desktop/RecipeBook.Solution/RecipeBook/obj/",
+      "outputPath": "/Users/Guest/Desktop/RecipeBook/RecipeBook/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

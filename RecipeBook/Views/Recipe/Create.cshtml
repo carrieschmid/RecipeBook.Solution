@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBook.Models.Recipe
+
+@using (Html.BeginForm())
+{
+    <h4> Recipe: @Html.TextBoxFor(model => model.Name)</h4>
+    <h4> Ingredients: @Html.TextBoxFor(model => model.Name)</h4>
+
+    <input type="submit" value="Save new recipe" class="btn btn-default">
+}
